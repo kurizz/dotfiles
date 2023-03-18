@@ -1,0 +1,7 @@
+[init]
+	defaultBranch = master
+[core]
+	editor = vim
+[user]
+	email = umozon63313@gmail.com
+	name = n-mug
