@@ -1,0 +1,3 @@
+cp ~/dotfiles/symbolic_linker.sh ~/symbolic_linker.sh;  
+cd ~/;
+bash symbolic_linker.sh
