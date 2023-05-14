@@ -111,12 +111,4 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# enable powerline-go
-function _update_ps1() {
-    # PS1="$(/usr/local/bin/powerline-go -error $?)"
-    PS1="$(/usr/local/bin/powerline-go -error $? -east-asian-width -modules venv,ssh,cwd,perms,git,hg,jobs,exit,root)"
-}
-
-if [ "$TERM" != "linux" ] && [ -f "/usr/local/bin/powerline-go" ]; then
-    PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
-fi
+. "$HOME/.cargo/env"
