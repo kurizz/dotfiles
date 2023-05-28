@@ -11,27 +11,18 @@ for _, source in ipairs {
   end
 end
 
+if astronvim.default_colorscheme then
+  if not pcall(vim.cmd.colorscheme, astronvim.default_colorscheme) then
+    require("astronvim.utils").notify(
+      "Error setting up colorscheme: " .. astronvim.default_colorscheme,
+      vim.log.levels.ERROR
+    )
+  end
+end
+
 require("astronvim.utils").conditional_func(astronvim.user_opts("polish", nil, false), true)
 
 local config = {
-  -- colorscheme
-  vim.cmd [[
-    colorscheme tokyonight
-  ]],
-
-  -- Default theme configuration
-  -- default_theme = {
-  --  diagnostics_style = { italic = true },
-  --  -- Modify the color table
-  --  colors = { fg = "#abb2bf" },
-  --  -- Modify the highlight groups
-  --  highlights = function(highlights)
-  --    local C = require "default_theme.colors"
-  --    highlights.Normal = { fg = C.fg, bg = C.bg }
-  --    return highlights
-  --  end,
-  --},
-
   -- Disable default plugins
   enabled = {
     bufferline = true,
@@ -50,9 +41,6 @@ local config = {
     ts_autotag = true,
   },
 
-  -- Disable AstroNvim ui feature
-  --ui = { nui_input = true, telescope_select = true },
-
   -- Diagnostics configuration (for vim.diagnostics.config({}))
   diagnostics = { virtual_text = true, underline = true },
 
@@ -62,18 +50,13 @@ local config = {
       file_browser = {
         hijack_netrw = true,
         mappings = {
-          ["i"] = {
-            -- your custom insert mode mappings
-          },
-          ["n"] = {
-            -- your custom normal mode mappings
-          },
+          ["i"] = {}, -- your custom insert mode mappings
+          ["n"] = {}, -- your custom normal mode mappings
         },
       },
     },
   },
   require("telescope").load_extension "file_browser",
-
   vim.api.nvim_set_keymap(
     "n",
     "<space>fb",
@@ -81,12 +64,28 @@ local config = {
     { noremap = true }
   ),
 
-  -- transparent
+  -- lsp
+  require'lspconfig'.pylsp.setup{
+    settings = {
+      pylsp = {
+        plugins = {
+          pycodestyle = {
+            maxLineLength = 120
+          }
+        }
+      }
+    }
+  },
+
+  -- colorscheme
+  vim.cmd [[
+    colorscheme tokyonight
+  ]],
   require("transparent").setup({
     extra_groups = {
       "NormalFloat", -- plugins which have float panel such as Lazy, Mason, LspInfo
       "TelescopeNormal",
-      "NeoTreeNormal" -- NvimTree
+      "NeoTreeNormal"
     }
   }),
 
