@@ -46,9 +46,15 @@ local config = {
 
   -- telescope
   require("telescope").setup {
+    defaults = {
+      sorting_strategy = "ascending",
+      theme = "dropdown"
+    },
     extensions = {
       file_browser = {
+        -- theme = "dropdown",
         hijack_netrw = true,
+        grouped = true,
         mappings = {
           ["i"] = {}, -- your custom insert mode mappings
           ["n"] = {}, -- your custom normal mode mappings
