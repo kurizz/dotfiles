@@ -1,0 +1,9 @@
+[init]
+	defaultBranch = main
+[core]
+	editor = vim
+[user]
+	email = umozon63313@gmail.com
+	name = kurizz
+[alias]
+	graph = log --all --graph --decorate --oneline

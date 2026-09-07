@@ -1,0 +1,52 @@
+modmap:
+  - name: HHKB Command tap/hold
+    device:
+      only: "HHKB-Hybrid_2 Keyboard"
+    remap:
+      KEY_LEFTMETA:
+        held: KEY_LEFTMETA
+        alone: BTN_TRIGGER_HAPPY1
+        free_hold: true
+
+      KEY_RIGHTMETA:
+        held: KEY_RIGHTMETA
+        alone: BTN_TRIGGER_HAPPY2
+        free_hold: true
+
+keymap:
+  - name: HHKB IME
+    remap:
+      BTN_TRIGGER_HAPPY1:
+        launch: ["ibus", "engine", "xkb:us::eng"]
+
+      BTN_TRIGGER_HAPPY2:
+        launch: ["ibus", "engine", "mozc-jp"]
+
+  - name: Emacs
+    device:
+      only: "HHKB-Hybrid_2 Keyboard"
+    application:
+      not: "com.mitchellh.ghostty"
+    remap:
+      C-A: Home
+      C-E: End
+      C-F: Right
+      C-B: Left
+      C-N: Down
+      C-P: Up
+      C-H: Backspace
+      C-D: Delete
+      C-K: [Shift-End, C-X]
+      Super-X: C-X
+      Super-C: C-C
+      Super-V: C-V
+
+  - name: Ghostty
+    device:
+      only: "HHKB-Hybrid_2 Keyboard"
+    application:
+      only: "com.mitchellh.ghostty"
+    remap:
+      Super-X: C-Shift-X
+      Super-C: C-Shift-C
+      Super-V: C-Shift-V

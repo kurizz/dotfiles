@@ -1,0 +1,24 @@
+onboarding = false
+
+[theme]
+name = "catppuccin-latte"
+auto_switch = false
+
+[ui]
+agent_panel_sort = "spaces"
+
+[ui.sidebar.agents.rows_by_agent]
+claude = [["state_icon", "workspace", "tab"], ["terminal_title_stripped"], ["agent"]]
+
+[terminal]
+default_shell= "/usr/bin/zsh"
+
+[keys]
+prefix = "ctrl+g"
+
+[[keys.command]]
+key = "prefix+i"
+type = "popup"
+command = "lazygit"
+width = "80%"
+height = "80%"
