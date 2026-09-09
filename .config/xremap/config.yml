@@ -1,4 +1,19 @@
 modmap:
+  - name: HHKB Meta to Alt for TUI emacs
+    device:
+      only: "HHKB-Hybrid_2 Keyboard"
+    application:
+      only: "com.mitchellh.ghostty"
+    remap:
+      KEY_LEFTMETA:
+        held: KEY_LEFTALT
+        alone: KEY_HANJA
+        free_hold: true
+      KEY_RIGHTMETA:
+        held: KEY_LEFTALT
+        alone: KEY_HANGEUL
+        free_hold: true
+
   - name: HHKB Command tap/hold
     device:
       only: "HHKB-Hybrid_2 Keyboard"
@@ -7,14 +22,13 @@ modmap:
         held: KEY_LEFTMETA
         alone: KEY_HANJA
         free_hold: true
-
       KEY_RIGHTMETA:
         held: KEY_RIGHTMETA
         alone: KEY_HANGEUL
         free_hold: true
 
 keymap:
-  - name: Emacs
+  - name: Emacs key bind
     device:
       only: "HHKB-Hybrid_2 Keyboard"
     application:
@@ -33,12 +47,11 @@ keymap:
       Super-C: C-C
       Super-V: C-V
 
-  - name: Ghostty
+  - name: Ghostty (Dependent on "Meta to Alt")
     device:
       only: "HHKB-Hybrid_2 Keyboard"
     application:
       only: "com.mitchellh.ghostty"
     remap:
-      Super-X: C-Shift-X
-      Super-C: C-Shift-C
-      Super-V: C-Shift-V
+      Alt-C: C-Shift-C
+      Alt-V: C-Shift-V
