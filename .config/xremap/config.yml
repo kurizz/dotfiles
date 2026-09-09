@@ -5,23 +5,15 @@ modmap:
     remap:
       KEY_LEFTMETA:
         held: KEY_LEFTMETA
-        alone: BTN_TRIGGER_HAPPY1
+        alone: KEY_HANJA
         free_hold: true
 
       KEY_RIGHTMETA:
         held: KEY_RIGHTMETA
-        alone: BTN_TRIGGER_HAPPY2
+        alone: KEY_HANGEUL
         free_hold: true
 
 keymap:
-  - name: HHKB IME
-    remap:
-      BTN_TRIGGER_HAPPY1:
-        launch: ["ibus", "engine", "xkb:us::eng"]
-
-      BTN_TRIGGER_HAPPY2:
-        launch: ["ibus", "engine", "mozc-jp"]
-
   - name: Emacs
     device:
       only: "HHKB-Hybrid_2 Keyboard"
