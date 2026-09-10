@@ -5,6 +5,8 @@ modmap:
     application:
       only: "com.mitchellh.ghostty"
     remap:
+      KEY_ESC:
+        press: KEY_HANJA
       KEY_LEFTMETA:
         held: KEY_LEFTALT
         alone: KEY_HANJA
@@ -13,7 +15,6 @@ modmap:
         held: KEY_LEFTALT
         alone: KEY_HANGEUL
         free_hold: true
-
   - name: HHKB Command tap/hold
     device:
       only: "HHKB-Hybrid_2 Keyboard"
