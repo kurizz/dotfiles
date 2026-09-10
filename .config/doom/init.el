@@ -115,7 +115,7 @@
 
        :os
        (:if (featurep :system 'macos) macos)  ; improve compatibility with macOS
-       ;;tty               ; improve the terminal Emacs experience
+       tty                 ; improve the terminal Emacs experience
 
        :lang
        ;;ada               ; In strong typing we (blindly) trust
@@ -156,12 +156,12 @@
        ;;lean              ; for folks with too much to prove
        ;;ledger            ; be audit you can be
        ;;lua               ; one-based indices? one-based indices
-       markdown          ; writing docs for people to ignore
+       markdown            ; writing docs for people to ignore
        ;;nim               ; python + lisp at the speed of c
        ;;nix               ; I hereby declare "nix geht mehr!"
        ;;ocaml             ; an objective camel
        ;;odin              ; C, minus its footguns
-       org               ; organize your plain life in plain text
+       (org +pretty +roam) ; organize your plain life in plain text
        ;;php               ; perl's insecure younger brother
        ;;plantuml          ; diagrams for confusing people more
        ;;graphviz          ; diagrams for confusing yourself even more

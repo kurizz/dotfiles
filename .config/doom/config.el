@@ -32,8 +32,8 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-;;(setq doom-theme 'doom-one-light)
-(setq catppuccin-flavor 'latte doom-theme 'catppuccin)
+(setq doom-theme 'doom-one-light)
+;;(setq catppuccin-flavor 'latte doom-theme 'catppuccin)
 ;; Specify both a dark and light theme, like so and Doom will choose which one
 ;; to load based on your system light/dark setting:
 ;;
@@ -50,29 +50,11 @@
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/org/")
 
-;; C-h = Backspace
-(global-set-key (kbd "C-h") #'backward-delete-char-untabify)
+;; C-h == backspace
+(map! :map override
+      "C-h" #'backward-delete-char-untabify)
 
-;; Terminal background
-;; (defun my/terminal-transparent-background (&optional frame)
-;;   (let ((frame (or frame (selected-frame))))
-;;     (unless (display-graphic-p frame)
-;;       (set-face-background 'default "unspecified-bg" frame))))
-;;
-;; (add-hook 'window-setup-hook #'my/terminal-transparent-background)
-;; (add-hook 'after-make-frame-functions #'my/terminal-transparent-background)
-
-;;(defun my/transparent-terminal-background ()
-;;  (unless (display-graphic-p)
-;;    (set-face-background 'default "unspecified-bg")
-;;    (set-face-background 'line-number "unspecified-bg")
-;;    (set-face-background 'line-number-current-line "unspecified-bg")
-;;    (set-face-background 'fringe "unspecified-bg")))
-;;
-;;(add-hook 'window-setup-hook #'my/transparent-terminal-background)
-;;(add-hook 'doom-load-theme-hook #'my/transparent-terminal-background)
-
-
+;; Terminal Background
 (defun my/transparent-terminal-faces ()
   (unless (display-graphic-p)
     (dolist (face '(default
@@ -85,7 +67,6 @@
       (when (facep face)
         (set-face-background face "unspecified-bg")))
 
-    ;; solaire-mode が有効な場合の remap 対策
     (dolist (face '(solaire-default-face
                     solaire-hl-line-face
                     solaire-mode-line-face
@@ -95,6 +76,22 @@
 
 (add-hook 'window-setup-hook #'my/transparent-terminal-faces)
 (add-hook 'doom-load-theme-hook #'my/transparent-terminal-faces)
+
+;; org bullet
+(after! org-modern
+  (setq org-modern-star 'replace
+        org-modern-cycle-stars t
+        org-modern-replace-stars
+        '("◉" "○" "✸" "✿")))
+
+;; continue itemize for md/org
+(after! markdown-mode
+  (setq markdown-indent-on-enter 'indent-and-new-item))
+
+(after! evil-org
+  (add-to-list 'evil-org-special-o/O 'item)
+  (add-to-list 'evil-org-key-theme 'return)
+  (evil-org-set-key-theme))
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `with-eval-after-load' block, otherwise Doom's defaults may override your
